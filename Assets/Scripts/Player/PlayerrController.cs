@@ -10,9 +10,9 @@ public class PlayerrController : MonoBehaviour
 
     private bool buttonBelow = false;
     private bool isInRangeOfItem = false;
-    private GameObject objectInRange = null;
+    private Item objectInRange = null;
     private bool isCarryingItem = false;
-    private GameObject objectCarrying = null;
+    private Item objectCarrying = null;
 
     void Start()
     {
@@ -63,7 +63,7 @@ public class PlayerrController : MonoBehaviour
         if (other.gameObject.layer == 6 && !isCarryingItem)
         {
             isInRangeOfItem = true;
-            objectInRange = other.gameObject;
+            objectInRange = other.gameObject.GetComponent<Item>();
         }
 
 
@@ -74,7 +74,7 @@ public class PlayerrController : MonoBehaviour
 
         else if (other.gameObject.layer == 8 && isCarryingItem)
         {
-            EventManager.TriggerEvent(EventNames._CheckForLaser);
+            EventManager.TriggerEvent(EventNames._CheckForLaser, objectCarrying.Cost, objectCarrying.Name);
         }
     }
 
