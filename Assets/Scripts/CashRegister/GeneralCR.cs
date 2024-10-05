@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class GeneralCR : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GeneralCR : MonoBehaviour
     private float totalAmount;
     private float amountToAdd;
 
+    [SerializeField] private TMP_Text totalCashMde;
+
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._CheckForLaser, PlayerCheckedLaser);
@@ -31,7 +34,9 @@ public class GeneralCR : MonoBehaviour
         if ((bool)parameters[2])
         {
             Debug.Log("Can be scanned");
-            OnItemSuccessufullyInput((ItemType)parameters[3], ((float)parameters[0]).ToString());
+            amountToAdd = (float)parameters[0];
+            totalAmount += amountToAdd;
+            OnItemSuccessufullyInput((ItemType)parameters[3], amountToAdd.ToString());
         }
         else
         {
@@ -72,6 +77,7 @@ public class GeneralCR : MonoBehaviour
     private void OnItemSuccessufullyInput(ItemType itemScanned, string moneyToGain)
     {
         monitor.ItemTipedSuccess(moneyToGain);
+        totalCashMde.text = "$" + totalAmount;
         itemsFromClient.Remove(itemScanned);
 
         if (itemsFromClient.Count == 0)
