@@ -20,6 +20,8 @@ public class PlayerrController : MonoBehaviour
 
     [SerializeField] private Transform _mouthPoint;
 
+    [SerializeField] private float _rotationSpeed;
+
     private void Awake()
     {
         EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuy);
@@ -37,6 +39,9 @@ public class PlayerrController : MonoBehaviour
         float moveZ = Input.GetAxisRaw("Vertical");
 
         moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
+        moveDirection.Normalize();
+        transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+        _pm.MovePlayer(moveDirection * moveSpeed);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -71,7 +76,7 @@ public class PlayerrController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _pm.MovePlayer(moveDirection * moveSpeed);
+        
     }
 
     private void OnTriggerEnter(Collider other)

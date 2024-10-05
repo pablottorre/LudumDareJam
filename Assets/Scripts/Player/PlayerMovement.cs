@@ -13,6 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector3 dir)
     {
-        _rb.MovePosition(_rb.position + dir * Time.fixedDeltaTime);
+        _rb.linearVelocity = dir;
     }
 }
