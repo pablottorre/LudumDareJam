@@ -7,17 +7,15 @@ public class SimplePool<T> where T : IPoolObject<T>
 {
     private Queue<T> _availableObjects = new Queue<T>();
     private Func<T>  _creationFunc;
-    private Action<T>  _returnFunc;
     
-    public SimplePool(Func<T> creationProcess, Action<T> returnFunction)
+    public SimplePool(Func<T> creationProcess)
     {
         _creationFunc = creationProcess;
-        _returnFunc = returnFunction;
 
         for (var i = 0; i < 3; i++)
         {
             var newItem = _creationFunc();
-            newItem.OnCreateObject(_returnFunc);
+            newItem.OnCreateObject(ReturnObject);
             _availableObjects.Enqueue(newItem);
         }
     }
@@ -34,14 +32,14 @@ public class SimplePool<T> where T : IPoolObject<T>
         else
         {
             selectedItem = _creationFunc();
-            selectedItem.OnCreateObject(_returnFunc);
+            selectedItem.OnCreateObject(ReturnObject);
             selectedItem.OnEnableSetUp(enablePoint);
         }
 
         return selectedItem;
     }
 
-    public void ReturnObject(T poolObject)
+    private void ReturnObject(T poolObject)
     {
         poolObject.OnDisableSetUp();
         _availableObjects.Enqueue(poolObject);
