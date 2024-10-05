@@ -5,6 +5,7 @@ public class SO_Item : ScriptableObject
 {
     public ItemType type;
     public float cost;
+    public string itemName;
 }
 
 public enum ItemType

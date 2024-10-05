@@ -14,7 +14,12 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     [SerializeField] private GameObject _codeSticker, _registerSticker;
 
     private Action<Item> _returnFunction;
+    
+    public float Cost => _soItem.cost;
+    public string Name => _soItem.itemName;
 
+    #region Pool Region
+    
     public void OnCreateObject(Action<Item> returnFunction)
     {
         _returnFunction = returnFunction;
@@ -44,6 +49,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         _registerSticker.SetActive(false);
     }
 
+    #endregion
+
     private void OnFinishBuyEvent(params object[] parameters)
     {
         _returnFunction(this);
@@ -51,6 +58,10 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     private void OnCheckCode(params object[] parameters)
     {
-        _registerSticker.SetActive(_actualCode.Equals((string)parameters[0]));
+        if (!_registerSticker.activeSelf && _actualCode.Equals((string)parameters[0]))
+        {
+            _registerSticker.SetActive(true);
+            //TODO: Evento de confirmacion
+        }
     }
 }
