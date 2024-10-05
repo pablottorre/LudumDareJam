@@ -31,7 +31,7 @@ public class GeneralCR : MonoBehaviour
         if ((bool)parameters[2])
         {
             Debug.Log("Can be scanned");
-            OnItemSuccessufullyInput((ItemType)parameters[3]);
+            OnItemSuccessufullyInput((ItemType)parameters[3], ((float)parameters[0]).ToString());
         }
         else
         {
@@ -50,7 +50,6 @@ public class GeneralCR : MonoBehaviour
     {
         EventManager.TriggerEvent(EventNames._OnCheckCode, barcodeInput);
         barcodeInput = string.Empty;
-        monitor.InputFromPlayer(barcodeInput);
 
         if (!checkForItemsExist)
         {
@@ -66,12 +65,13 @@ public class GeneralCR : MonoBehaviour
 
         if (checkForItemsExist)
         {
-            OnItemSuccessufullyInput((ItemType)parameters[1]);
+            OnItemSuccessufullyInput((ItemType)parameters[1], amountToAdd.ToString());
         }
     }
 
-    private void OnItemSuccessufullyInput(ItemType itemScanned)
+    private void OnItemSuccessufullyInput(ItemType itemScanned, string moneyToGain)
     {
+        monitor.ItemTipedSuccess(moneyToGain);
         itemsFromClient.Remove(itemScanned);
 
         if (itemsFromClient.Count == 0)
@@ -81,7 +81,7 @@ public class GeneralCR : MonoBehaviour
         }
         else
         {
-            monitor.ItemTipedSuccess();
+            
 
         }
     }

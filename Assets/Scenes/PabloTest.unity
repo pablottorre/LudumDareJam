@@ -1499,6 +1499,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 8042129781228920828, guid: 0ab6629469c12a844ae4a5d0d212141d, type: 3}
+      propertyPath: _timerForNewClient
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8042129781228920828, guid: 0ab6629469c12a844ae4a5d0d212141d, type: 3}
       propertyPath: _queueNodes.Array.size
       value: 4
       objectReference: {fileID: 0}

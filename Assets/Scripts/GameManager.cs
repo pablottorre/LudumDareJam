@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
 
     private readonly List<Client> _clients = new List<Client>();
-    private float _timerForNewClient = 8;
+    [SerializeField] private float _timerForNewClient = 8;
     private SimplePool<Client> _clientsPool;
 
 
