@@ -13,11 +13,17 @@ public class GeneralCR : MonoBehaviour
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._CheckForLaser, PlayerCheckedLaser);
+        EventManager.SubscribeToEvent(EventNames._EndInputOfBarcode,PlayerEndedTipying);
     }
 
     private void PlayerCheckedLaser(params object[] parameters)
     {
         Debug.Log("PlayerCheckedLaser");
+    } 
+    
+    private void PlayerEndedTipying(params object[] parameters)
+    {
+        Debug.Log("PlayerEndedTipying");
     }
 
 
