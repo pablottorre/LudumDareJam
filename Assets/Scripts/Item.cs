@@ -8,6 +8,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     [SerializeField] private SO_Item _soItem;
 
     [SerializeField] private Rigidbody _rb;
+    [SerializeField] private Collider _collider;
 
     [SerializeField] private int _minCodeLength, _maxCodeLength;
     [SerializeField] private string _actualCode;
@@ -61,7 +62,27 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         if (!_registerSticker.activeSelf && _actualCode.Equals((string)parameters[0]))
         {
             _registerSticker.SetActive(true);
-            //TODO: Evento de confirmacion
+            EventManager.TriggerEvent(EventNames._OnSuccessCheckCode, Cost);
         }
+    }
+
+    public Item Interact(bool interactState, Transform root)
+    {
+        if (interactState)
+        {
+            transform.parent = root;
+            transform.localPosition=Vector3.zero;
+            transform.rotation=Quaternion.Euler(0,0,0);
+            _rb.Sleep();
+            _collider.isTrigger = true;
+        }
+        else
+        {
+            transform.parent = null;
+            _rb.WakeUp();
+            _collider.isTrigger = false;
+        }
+        
+        return this;
     }
 }
