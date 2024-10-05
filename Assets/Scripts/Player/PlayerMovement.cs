@@ -15,19 +15,4 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.MovePosition(_rb.position + dir * Time.fixedDeltaTime);
     }
-
-    public void PressButonRegistery()
-    {
-
-    }
-
-    public void GrabObject(GameObject objectToGrab)
-    {
-
-    }
-
-    public void ReleaseObject()
-    {
-
-    }
 }
