@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
         }
 
         _crIsBusy = true;
+        EventManager.TriggerEvent(EventNames._OnClientEnterRegister, _clients[0].itemsInBag);
     }
 
     private void OnFinishBuy(params object[] parameters)

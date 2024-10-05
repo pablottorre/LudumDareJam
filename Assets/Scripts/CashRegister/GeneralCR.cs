@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class GeneralCR : MonoBehaviour
 {
+    [SerializeField] private List<ItemType> itemsFromClient = new List<ItemType>();
+
+
     [SerializeField] private List<KeyboardCR> keys = new List<KeyboardCR>();
     [SerializeField] private MonitorCR monitor;
 
@@ -20,11 +23,21 @@ public class GeneralCR : MonoBehaviour
         EventManager.SubscribeToEvent(EventNames._CheckForLaser, PlayerCheckedLaser);
         EventManager.SubscribeToEvent(EventNames._EndInputOfBarcode, PlayerEndedTipying);
         EventManager.SubscribeToEvent(EventNames._OnSuccessCheckCode, SetCheckItem);
+        EventManager.SubscribeToEvent(EventNames._OnClientEnterRegister, OnPlayerGiveItems);
     }
 
     private void PlayerCheckedLaser(params object[] parameters)
     {
-        Debug.Log("PlayerCheckedLaser");
+        if ((bool)parameters[2])
+        {
+            Debug.Log("Can be scanned");
+            OnItemSuccessufullyInput();
+        }
+        else
+        {
+            Debug.Log("Cannot be scanned");
+            OnItemCannotBeScanned();
+        }
     }
 
     public void AddKeyboardInput(string value)
@@ -63,6 +76,16 @@ public class GeneralCR : MonoBehaviour
     private void OnItemUnuccessufullyInput()
     {
         monitor.ItemTipedUnsuccess();
+    }
+
+    private void OnItemCannotBeScanned()
+    {
+        //Aca va feedback de que el producto no se puede escanear
+    }
+
+    private void OnPlayerGiveItems(params object[] parameters)
+    {        
+        itemsFromClient = (List<ItemType>)parameters[0];
     }
 
 }

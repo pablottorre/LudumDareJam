@@ -76,7 +76,7 @@ public class PlayerrController : MonoBehaviour
         
         else if (other.gameObject.layer == 8 && isCarryingItem)
         {
-            EventManager.TriggerEvent(EventNames._CheckForLaser, objectCarrying.Cost, objectCarrying.Name);
+            EventManager.TriggerEvent(EventNames._CheckForLaser, objectCarrying.Cost, objectCarrying.Name, objectCarrying.canBeScaned);
         }
     }
 

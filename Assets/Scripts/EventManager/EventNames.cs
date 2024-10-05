@@ -14,4 +14,5 @@ public static class EventNames
     public const string _OnFinishBuy = "OnFinishBuy";
     public const string _OnCheckCode = "OnCheckCode";
     public const string _OnSuccessCheckCode = "OnSuccessCheckCode";
+    public const string _OnClientEnterRegister = "OnClientEnterRegister";
 }

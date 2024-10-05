@@ -21,6 +21,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     public ItemType Type => _soItem.type;
 
+    public bool canBeScaned;
+
     private void LateUpdate()
     {
         if (transform.parent == null) return;
