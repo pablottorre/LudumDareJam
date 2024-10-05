@@ -218,6 +218,7 @@ MonoBehaviour:
   _actualCode: 
   _codeSticker: {fileID: 3947331432653362303}
   _registerSticker: {fileID: 1325349689565361131}
+  canBeScaned: 0
 --- !u!54 &2968674818047870998
 Rigidbody:
   m_ObjectHideFlags: 0

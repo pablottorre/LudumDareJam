@@ -11,7 +11,7 @@ public class GeneralCR : MonoBehaviour
     [SerializeField] private List<KeyboardCR> keys = new List<KeyboardCR>();
     [SerializeField] private MonitorCR monitor;
 
-    private string barcodeInput;
+    private string barcodeInput = string.Empty;
 
     private bool checkForItemsExist = false;
 
@@ -47,8 +47,8 @@ public class GeneralCR : MonoBehaviour
 
     public void PlayerEndedTipying(params object[] parameters)
     {
-        Debug.Log("PlayerEndedTipying");
         EventManager.TriggerEvent(EventNames._OnCheckCode, barcodeInput);
+        barcodeInput = string.Empty; 
 
         if (!checkForItemsExist)
         {
@@ -80,7 +80,7 @@ public class GeneralCR : MonoBehaviour
         else
         {
             monitor.ItemTipedSuccess();
-            
+
         }
     }
 
