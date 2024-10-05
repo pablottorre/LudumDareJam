@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(Vector3 dir)
     {
+        dir.y = _rb.linearVelocity.y;
         _rb.linearVelocity = dir;
     }
 }
