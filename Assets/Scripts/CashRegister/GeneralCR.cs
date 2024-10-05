@@ -27,19 +27,42 @@ public class GeneralCR : MonoBehaviour
         Debug.Log("PlayerCheckedLaser");
     }
 
-    private void PlayerEndedTipying(params object[] parameters)
+    public void AddKeyboardInput(string value)
+    {
+        barcodeInput += value;
+    }
+
+    public void PlayerEndedTipying(params object[] parameters)
     {
         Debug.Log("PlayerEndedTipying");
         EventManager.TriggerEvent(EventNames._OnCheckCode, barcodeInput);
+
+        if (!checkForItemsExist)
+        {
+            OnItemUnuccessufullyInput();
+        }
     }
 
     private void SetCheckItem(params object[] parameters)
     {
         checkForItemsExist = true;
         amountToAdd = (float)parameters[0];
-        totalAmount = +amountToAdd;
+        totalAmount += amountToAdd;
+
+        if (checkForItemsExist)
+        {
+            OnItemSuccessufullyInput();
+        }
     }
 
+    private void OnItemSuccessufullyInput()
+    {
+        monitor.ItemTipedSuccess();
+    }
 
+    private void OnItemUnuccessufullyInput()
+    {
+        monitor.ItemTipedUnsuccess();
+    }
 
 }

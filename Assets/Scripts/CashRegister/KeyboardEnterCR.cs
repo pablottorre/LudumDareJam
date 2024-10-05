@@ -1,11 +1,10 @@
 using UnityEngine;
 
-public class KeyboardCR : MonoBehaviour
+public class KeyboardEnterCR : MonoBehaviour
 {
     [SerializeField] private GeneralCR _generalCR;
 
     private bool playerOnTop = false;
-    [SerializeField] private string inputToShare;
 
     private void Start()
     {
@@ -16,7 +15,7 @@ public class KeyboardCR : MonoBehaviour
     {
         if (playerOnTop)
         {
-            _generalCR.AddKeyboardInput(inputToShare);
+            _generalCR.PlayerEndedTipying();
         }
     }
 
