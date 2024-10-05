@@ -43,12 +43,14 @@ public class GeneralCR : MonoBehaviour
     public void AddKeyboardInput(string value)
     {
         barcodeInput += value;
+        monitor.InputFromPlayer(barcodeInput);
     }
 
     public void PlayerEndedTipying(params object[] parameters)
     {
         EventManager.TriggerEvent(EventNames._OnCheckCode, barcodeInput);
-        barcodeInput = string.Empty; 
+        barcodeInput = string.Empty;
+        monitor.InputFromPlayer(barcodeInput);
 
         if (!checkForItemsExist)
         {
