@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class GeneralCR : MonoBehaviour
 {
-    [SerializeField] private List<ItemType> itemsFromClient = new List<ItemType>();
+    private List<ItemType> itemsFromClient = new List<ItemType>();
 
 
     [SerializeField] private List<KeyboardCR> keys = new List<KeyboardCR>();
@@ -31,7 +31,7 @@ public class GeneralCR : MonoBehaviour
         if ((bool)parameters[2])
         {
             Debug.Log("Can be scanned");
-            OnItemSuccessufullyInput();
+            OnItemSuccessufullyInput((ItemType)parameters[3]);
         }
         else
         {
@@ -64,13 +64,24 @@ public class GeneralCR : MonoBehaviour
 
         if (checkForItemsExist)
         {
-            OnItemSuccessufullyInput();
+            OnItemSuccessufullyInput((ItemType)parameters[1]);
         }
     }
 
-    private void OnItemSuccessufullyInput()
+    private void OnItemSuccessufullyInput(ItemType itemScanned)
     {
-        monitor.ItemTipedSuccess();
+        itemsFromClient.Remove(itemScanned);
+
+        if (itemsFromClient.Count == 0)
+        {
+            Debug.Log("Complete el cliente");
+            EventManager.TriggerEvent(EventNames._OnFinishBuy);
+        }
+        else
+        {
+            monitor.ItemTipedSuccess();
+            
+        }
     }
 
     private void OnItemUnuccessufullyInput()
@@ -84,7 +95,7 @@ public class GeneralCR : MonoBehaviour
     }
 
     private void OnPlayerGiveItems(params object[] parameters)
-    {        
+    {
         itemsFromClient = (List<ItemType>)parameters[0];
     }
 

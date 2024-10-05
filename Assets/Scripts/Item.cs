@@ -75,7 +75,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         if (!_registerSticker.activeSelf && _actualCode.Equals((string)parameters[0]))
         {
             _registerSticker.SetActive(true);
-            EventManager.TriggerEvent(EventNames._OnSuccessCheckCode, Cost);
+            EventManager.TriggerEvent(EventNames._OnSuccessCheckCode, Cost, Type);
         }
     }
 
