@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Item : MonoBehaviour, IPoolObject<Item>
 {
     [SerializeField] private SO_Item _soItem;
@@ -19,11 +19,21 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     public float Cost => _soItem.cost;
     public string Name => _soItem.itemName;
 
+    public ItemType Type => _soItem.type;
+
+    private void LateUpdate()
+    {
+        if (transform.parent == null) return;
+        
+        transform.position = transform.parent.position;
+    }
+
     #region Pool Region
     
     public void OnCreateObject(Action<Item> returnFunction)
     {
         _returnFunction = returnFunction;
+        gameObject.SetActive(false);
     }
 
     public void OnEnableSetUp(Transform from)
@@ -48,6 +58,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         EventManager.UnsuscribeToEvent(EventNames._OnFinishBuy, OnFinishBuyEvent);
         EventManager.UnsuscribeToEvent(EventNames._OnCheckCode, OnCheckCode);
         _registerSticker.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     #endregion
@@ -66,23 +77,25 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         }
     }
 
-    public Item Interact(bool interactState, Transform root)
+    public Item Interact(bool interactState, Transform root = null)
     {
         if (interactState)
         {
-            transform.parent = root;
-            transform.localPosition=Vector3.zero;
-            transform.rotation=Quaternion.Euler(0,0,0);
-            _rb.Sleep();
             _collider.isTrigger = true;
+            _rb.Sleep();
+            _rb.useGravity = false;
+            transform.parent = root;
+            transform.localPosition = Vector3.zero;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else
         {
             transform.parent = null;
+            _rb.useGravity = true;
             _rb.WakeUp();
             _collider.isTrigger = false;
         }
-        
+
         return this;
     }
 }

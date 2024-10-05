@@ -10,5 +10,6 @@ public class SO_Item : ScriptableObject
 
 public enum ItemType
 {
-    
+    Milk,
+    Candy,
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class PlayerrController : MonoBehaviour
@@ -14,6 +15,8 @@ public class PlayerrController : MonoBehaviour
     private bool isCarryingItem = false;
     private Item objectCarrying = null;
 
+    [SerializeField] private Transform _mouthPoint;
+
     void Start()
     {
 
@@ -25,9 +28,9 @@ public class PlayerrController : MonoBehaviour
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveZ = Input.GetAxisRaw("Vertical");
 
-        moveDirection = transform.right * moveX + transform.forward * moveZ;
+        moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (buttonBelow)
             {
@@ -35,20 +38,26 @@ public class PlayerrController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (isInRangeOfItem && !isCarryingItem)
-            {
-                EventManager.TriggerEvent(EventNames._GrabObject, objectInRange);
-                isCarryingItem = true;
-                objectCarrying = objectInRange;
-                objectInRange = null;
-            }
-            else if (isCarryingItem)
+            if (isCarryingItem)
             {
                 EventManager.TriggerEvent(EventNames._ReleaseObject, objectInRange);
                 isCarryingItem = false;
+                objectCarrying.Interact(false);
                 objectCarrying = null;
+            }
+            else
+            {
+                var objectsInRange = Physics.OverlapSphere(transform.position, 1, LayerMask.GetMask("Item"));
+
+                if (!objectsInRange.Any()) return;
+                
+                EventManager.TriggerEvent(EventNames._GrabObject, objectInRange);
+                isCarryingItem = true;
+                objectCarrying = objectsInRange.First().gameObject.GetComponent<Item>();
+                objectCarrying.Interact(true, _mouthPoint);
+                objectInRange = null;
             }
         }
     }
@@ -60,18 +69,11 @@ public class PlayerrController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 6 && !isCarryingItem)
-        {
-            isInRangeOfItem = true;
-            objectInRange = other.gameObject.GetComponent<Item>();
-        }
-
-
-        else if (other.gameObject.layer == 7)
+        if (other.gameObject.layer == 7)
         {
             buttonBelow = true;
         }
-
+        
         else if (other.gameObject.layer == 8 && isCarryingItem)
         {
             EventManager.TriggerEvent(EventNames._CheckForLaser, objectCarrying.Cost, objectCarrying.Name);
@@ -80,13 +82,7 @@ public class PlayerrController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 6)
-        {
-            isInRangeOfItem = false;
-            objectInRange = null;
-        }
-
-        else if (other.gameObject.layer == 7)
+        if (other.gameObject.layer == 7)
         {
             buttonBelow = false;
         }
