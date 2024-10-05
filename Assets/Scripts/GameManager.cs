@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour
         _clients[0].OnFinishBuy();
         _clients.RemoveAt(0);
 
+        _crIsBusy = false;
+
         if (!_clients.Any()) return;
 
         for (var i = 0; i < _clients.Count; i++)

@@ -1,9 +1,9 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
 public class PlayerrController : MonoBehaviour
 {
-
     [SerializeField] private PlayerMovement _pm;
 
     private Vector3 moveDirection;
@@ -19,6 +19,11 @@ public class PlayerrController : MonoBehaviour
     private Item objectCarrying = null;
 
     [SerializeField] private Transform _mouthPoint;
+
+    private void Awake()
+    {
+        EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuy);
+    }
 
     void Start()
     {
@@ -45,7 +50,6 @@ public class PlayerrController : MonoBehaviour
         {
             if (isCarryingItem)
             {
-                EventManager.TriggerEvent(EventNames._ReleaseObject, objectInRange);
                 isCarryingItem = false;
                 objectCarrying.Interact(false);
                 objectCarrying = null;
@@ -55,10 +59,10 @@ public class PlayerrController : MonoBehaviour
                 var objectsInRange = Physics.OverlapSphere(transform.position, 1, LayerMask.GetMask("Item"));
 
                 if (!objectsInRange.Any()) return;
-                
-                EventManager.TriggerEvent(EventNames._GrabObject, objectInRange);
+
                 isCarryingItem = true;
-                objectCarrying = objectsInRange.First().gameObject.GetComponent<Item>();
+                objectCarrying = objectsInRange.OrderBy(x => Vector3.Distance(x.transform.position, transform.position))
+                    .First().gameObject.GetComponent<Item>();
                 objectCarrying.Interact(true, _mouthPoint);
                 objectInRange = null;
             }
@@ -76,7 +80,7 @@ public class PlayerrController : MonoBehaviour
         {
             buttonBelow = true;
         }
-        
+
         else if (other.gameObject.layer == 8 && isCarryingItem)
         {
             EventManager.TriggerEvent(EventNames._CheckForLaser,
@@ -96,16 +100,10 @@ public class PlayerrController : MonoBehaviour
         }
     }
 
-
-    public void GrabObject()
+    private void OnFinishBuy(params object[] parameters)
     {
-        EventManager.TriggerEvent(EventNames._GrabObject);
+        isCarryingItem = false;
+        objectCarrying.Interact(false);
+        objectCarrying = null;
     }
-
-    public void ReleaseObject()
-    {
-        EventManager.TriggerEvent(EventNames._ReleaseObject);
-    }
-
-
 }
