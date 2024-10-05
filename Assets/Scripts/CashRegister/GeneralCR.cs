@@ -92,6 +92,20 @@ public class GeneralCR : MonoBehaviour
         }
     }
 
+    public void RemoveLastLetter()
+    {
+        if (string.IsNullOrEmpty(barcodeInput))
+        {
+            return;
+        }
+
+        barcodeInput = barcodeInput.Substring(0, barcodeInput.Length - 1);
+
+        Debug.Log(barcodeInput);
+
+        monitor.RemoveLastInput(barcodeInput);
+    }
+
     private void OnItemUnuccessufullyInput()
     {
         monitor.ItemTipedUnsuccess();
