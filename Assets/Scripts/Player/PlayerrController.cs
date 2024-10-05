@@ -66,18 +66,18 @@ public class PlayerrController : MonoBehaviour
 
                 if (!objectsInRange.Any()) return;
 
-                isCarryingItem = true;
                 objectCarrying = objectsInRange.OrderBy(x => Vector3.Distance(x.transform.position, transform.position))
                     .First().gameObject.GetComponent<Item>();
-                objectCarrying.Interact(true, _mouthPoint);
-                objectInRange = null;
+
+                objectCarrying.Interact(true, !objectCarrying.canBeScanned, _mouthPoint);
+
+                isCarryingItem = true;
             }
         }
     }
 
     private void FixedUpdate()
     {
-        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -92,7 +92,7 @@ public class PlayerrController : MonoBehaviour
             EventManager.TriggerEvent(EventNames._CheckForLaser,
                 objectCarrying.Cost,
                 objectCarrying.Name,
-                objectCarrying.canBeScaned,
+                objectCarrying.canBeScanned,
                 objectCarrying.Type,
                 objectCarrying.GetterActualCode());
         }

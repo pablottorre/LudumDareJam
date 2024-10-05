@@ -158,7 +158,7 @@ MonoBehaviour:
   _actualCode: 
   _codeSticker: {fileID: 0}
   _registerSticker: {fileID: 7878416740430382682}
-  canBeScaned: 1
+  canBeScanned: 1
 --- !u!1 &7878416740430382682
 GameObject:
   m_ObjectHideFlags: 0

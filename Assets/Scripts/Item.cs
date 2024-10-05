@@ -15,23 +15,32 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     [SerializeField] private GameObject _codeSticker, _registerSticker;
 
     private Action<Item> _returnFunction;
-    
+
     public float Cost => _soItem.cost;
     public string Name => _soItem.itemName;
 
     public ItemType Type => _soItem.type;
 
-    public bool canBeScaned;
+    public bool canBeScanned;
+
+    private Transform _followPoint;
 
     private void LateUpdate()
     {
-        if (transform.parent == null) return;
-        
-        transform.position = transform.parent.position;
+        if (_followPoint == null) return;
+       
+        if (canBeScanned)
+        {
+            transform.position = _followPoint.position;
+        }
+        else
+        {
+            transform.position = new Vector3(_followPoint.position.x, transform.position.y, _followPoint.position.z);
+        }
     }
 
     #region Pool Region
-    
+
     public void OnCreateObject(Action<Item> returnFunction)
     {
         _returnFunction = returnFunction;
@@ -84,20 +93,25 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         }
     }
 
-    public Item Interact(bool interactState, Transform root = null)
+    public Item Interact(bool interactState, bool isDrag = false, Transform root = null)
     {
         if (interactState)
         {
-            _collider.isTrigger = true;
             _rb.Sleep();
             _rb.useGravity = false;
-            transform.parent = root;
-            transform.localPosition = Vector3.zero;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            _followPoint = root;
+            _collider.isTrigger = true;
+            if (!isDrag)
+            {
+                transform.parent = root;
+                transform.localPosition = Vector3.zero;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
         }
         else
         {
             transform.parent = null;
+            _followPoint = null;
             _rb.useGravity = true;
             _rb.WakeUp();
             _collider.isTrigger = false;

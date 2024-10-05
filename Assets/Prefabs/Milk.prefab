@@ -218,7 +218,7 @@ MonoBehaviour:
   _actualCode: 
   _codeSticker: {fileID: 3947331432653362303}
   _registerSticker: {fileID: 1325349689565361131}
-  canBeScaned: 0
+  canBeScanned: 0
 --- !u!54 &2968674818047870998
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -227,7 +227,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620997954878504181}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 4
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
