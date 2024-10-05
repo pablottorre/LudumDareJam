@@ -24,6 +24,7 @@ public class GeneralCR : MonoBehaviour
     private void PlayerEndedTipying(params object[] parameters)
     {
         Debug.Log("PlayerEndedTipying");
+        EventManager.TriggerEvent(EventNames._OnCheckCode, barcodeInput);
     }
 
 
