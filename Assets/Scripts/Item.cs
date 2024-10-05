@@ -55,6 +55,11 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         EventManager.SubscribeToEvent(EventNames._OnCheckCode, OnCheckCode);
     }
 
+    public string GetterActualCode()
+    {
+        return _actualCode;
+    }
+
     public void OnDisableSetUp()
     {
         EventManager.UnsuscribeToEvent(EventNames._OnFinishBuy, OnFinishBuyEvent);

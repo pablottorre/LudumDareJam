@@ -36,7 +36,7 @@ public class GeneralCR : MonoBehaviour
         else
         {
             Debug.Log("Cannot be scanned");
-            OnItemCannotBeScanned();
+            OnItemCannotBeScanned((string)parameters[4]);
         }
     }
 
@@ -91,9 +91,9 @@ public class GeneralCR : MonoBehaviour
         monitor.ItemTipedUnsuccess();
     }
 
-    private void OnItemCannotBeScanned()
+    private void OnItemCannotBeScanned(string barcodeToDisplay)
     {
-        //Aca va feedback de que el producto no se puede escanear
+        monitor.ItemToType(barcodeToDisplay);
     }
 
     private void OnPlayerGiveItems(params object[] parameters)
