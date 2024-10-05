@@ -8,6 +8,9 @@ public class PlayerrController : MonoBehaviour
 
     private Vector3 moveDirection;
     [SerializeField] private float moveSpeed;
+    private float originalSpeed;
+    [SerializeField] private float slowedSpeed;
+    [SerializeField] private float fastSpeed;
 
     private bool buttonBelow = false;
     private bool isInRangeOfItem = false;
@@ -19,7 +22,7 @@ public class PlayerrController : MonoBehaviour
 
     void Start()
     {
-
+        originalSpeed = moveSpeed;
     }
 
 

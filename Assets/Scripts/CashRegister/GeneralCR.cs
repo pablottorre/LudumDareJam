@@ -101,8 +101,6 @@ public class GeneralCR : MonoBehaviour
 
         barcodeInput = barcodeInput.Substring(0, barcodeInput.Length - 1);
 
-        Debug.Log(barcodeInput);
-
         monitor.RemoveLastInput(barcodeInput);
     }
 
