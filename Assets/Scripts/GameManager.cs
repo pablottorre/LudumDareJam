@@ -169,8 +169,10 @@ public class GameManager : MonoBehaviour
 
     private void StartOfNewDay(params object[] parameters)
     {
+        savings = (savings + earnings - costs);
         numberDay++;
         isWokingHour = true;
+        earnings = 0;
     } 
     
     [ContextMenu("Test")]
