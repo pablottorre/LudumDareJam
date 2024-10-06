@@ -1245,6 +1245,22 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!114 &703047569 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 404254346005415635, guid: b48299805f240b8478cac55fab73690d, type: 3}
+  m_PrefabInstance: {fileID: 7441842947501921169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b22e166bcd897e428009ddb092a5c54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &704570141 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3469941185316616908, guid: b48299805f240b8478cac55fab73690d, type: 3}
+  m_PrefabInstance: {fileID: 7441842947501921169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &712739223 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5929295750984383730, guid: 54d8aaac6d6bb8945a0415a220e100b4, type: 3}
@@ -4285,40 +4301,52 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 404254346005415635, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: cdPressButton
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 404254346005415635, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: _rotationSpeed
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 2457208069313848102, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.281
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457208069313848102, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.55
+      objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.17
+      value: 6.587
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.164
+      value: -2.268
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.43
+      value: -6.555
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.00000016391276
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 2592559562330965338, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -4328,6 +4356,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4281909165279617142, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767666482400496263, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: _pc
+      value: 
+      objectReference: {fileID: 703047569}
+    - target: {fileID: 4767666482400496263, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: timerJump
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767666482400496263, guid: b48299805f240b8478cac55fab73690d, type: 3}
+      propertyPath: modelPlayer
+      value: 
+      objectReference: {fileID: 704570141}
     - target: {fileID: 5632345974145504977, guid: b48299805f240b8478cac55fab73690d, type: 3}
       propertyPath: m_Name
       value: Player

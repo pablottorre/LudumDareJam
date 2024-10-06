@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -22,7 +24,10 @@ public class PlayerrController : MonoBehaviour
 
     [SerializeField] private float _rotationSpeed;
 
-    private bool isGrounded;
+
+    [SerializeField] private float cdPressButton;
+    private bool canJump = true;
+    private bool canMove = true;
 
     private void Awake()
     {
@@ -37,22 +42,36 @@ public class PlayerrController : MonoBehaviour
 
     void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveZ = Input.GetAxisRaw("Vertical");
-
-        moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
-        moveDirection.Normalize();
-        moveDirection.y = 0;
-        transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
-        _pm.MovePlayer(moveDirection * moveSpeed);
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
+            canMove = false;
+            canJump = false;
+            StartCoroutine(cdJump());
+
             if (buttonBelow)
             {
-                EventManager.TriggerEvent(EventNames._PressButton);
+                _pm.JumpPlayer(true);
+            }
+            else
+            {
+                _pm.JumpPlayer(false);
             }
         }
+
+
+        else if (canMove)
+        {
+            float moveX = Input.GetAxisRaw("Horizontal");
+            float moveZ = Input.GetAxisRaw("Vertical");
+
+            moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+            _pm.MovePlayer(moveDirection * moveSpeed);
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -82,6 +101,12 @@ public class PlayerrController : MonoBehaviour
     {
     }
 
+    IEnumerator cdJump()
+    {
+        yield return new WaitForSecondsRealtime(cdPressButton);
+        canJump = true;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 7)
@@ -109,26 +134,15 @@ public class PlayerrController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == 9)
-        {
-            isGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == 9)
-        {
-            isGrounded = false;
-        }
-    }
-
     private void OnFinishBuy(params object[] parameters)
     {
         isCarryingItem = false;
         objectCarrying.Interact(false);
         objectCarrying = null;
+    }
+
+    public void SetterCanMove(bool value)
+    {
+        canMove = value;
     }
 }
