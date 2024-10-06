@@ -15,8 +15,6 @@ public class PlayerrController : MonoBehaviour
     [SerializeField] private float fastSpeed;
 
     private bool buttonBelow = false;
-    private bool isInRangeOfItem = false;
-    private Item objectInRange = null;
     private bool isCarryingItem = false;
     private Item objectCarrying = null;
 

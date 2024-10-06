@@ -21,6 +21,8 @@ public class GeneralCR : MonoBehaviour
 
     [SerializeField] private TMP_Text totalCashMde;
 
+    [SerializeField] private int _maxChars;
+
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._CheckForLaser, PlayerCheckedLaser);
@@ -51,6 +53,8 @@ public class GeneralCR : MonoBehaviour
 
     public void AddKeyboardInput(string value)
     {
+        if (barcodeInput.Length > _maxChars) return;
+        
         barcodeInput += value;
         monitor.InputFromPlayer(barcodeInput);
     }

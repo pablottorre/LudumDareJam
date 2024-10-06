@@ -8,8 +8,8 @@ public class MonitorCR : MonoBehaviour
     [SerializeField] private GeneralCR _generalCR;
     [SerializeField] private TMP_Text codeText;
     [SerializeField] private TMP_Text bgCodeText;
-    private string _correctCode;
-    private string _currentCode;
+    private string _correctCode = string.Empty;
+    private string _currentCode = string.Empty;
 
     public void ItemTipedSuccess(string value)
     {
@@ -36,7 +36,7 @@ public class MonitorCR : MonoBehaviour
 
     public void InputFromPlayer(string value)
     {
-        string result = "";
+        var result = "";
 
         _currentCode = value;
 
@@ -50,7 +50,7 @@ public class MonitorCR : MonoBehaviour
         {
             int lastCharacterIndex = value.Length - 1;
 
-            if (lastCharacterIndex < _correctCode.Length && value[lastCharacterIndex] == _correctCode[lastCharacterIndex])
+            if (_correctCode == string.Empty || (lastCharacterIndex < _correctCode.Length && value[lastCharacterIndex] == _correctCode[lastCharacterIndex]))
             {
                 result += $"<color=white>{value[lastCharacterIndex]}</color>";
             }

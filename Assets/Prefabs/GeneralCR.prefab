@@ -537,6 +537,7 @@ MonoBehaviour:
   - {fileID: 8946864143556655297}
   monitor: {fileID: 0}
   totalCashMde: {fileID: 0}
+  _maxChars: 5
 --- !u!1001 &3792808269025645324
 PrefabInstance:
   m_ObjectHideFlags: 0
