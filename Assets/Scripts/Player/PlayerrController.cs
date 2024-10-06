@@ -22,6 +22,8 @@ public class PlayerrController : MonoBehaviour
 
     [SerializeField] private float _rotationSpeed;
 
+    private bool isGrounded;
+
     private void Awake()
     {
         EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuy);
@@ -104,6 +106,22 @@ public class PlayerrController : MonoBehaviour
         if (other.gameObject.layer == 7)
         {
             buttonBelow = false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == 9)
+        {
+            isGrounded = false;
         }
     }
 

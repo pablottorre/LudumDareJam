@@ -6,6 +6,12 @@ public class KeyboardEnterCR : MonoBehaviour
 
     private bool playerOnTop = false;
 
+    [SerializeField] private GameObject buttonToMove;
+    [SerializeField] private Transform originalPos;
+    [SerializeField] private Transform pressedPos;
+
+    [SerializeField] private float timerAnimation;
+
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._PressButton, PressButonRegistery);
@@ -16,10 +22,15 @@ public class KeyboardEnterCR : MonoBehaviour
         if (playerOnTop)
         {
             _generalCR.PlayerEndedTipying();
+            LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
         }
     }
 
+    public void ReturnToOriginalPos()
+    {
 
+        LeanTween.move(buttonToMove, originalPos.position, timerAnimation);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
