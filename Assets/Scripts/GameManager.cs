@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
 
     [Header("General Game Settings")]
     [SerializeField] private int numberDay;
+    [SerializeField] private int savings;
+    [SerializeField] private int earnings;
+    [SerializeField] private int costs;
 
     private void Awake()
     {
@@ -145,6 +148,21 @@ public class GameManager : MonoBehaviour
     public int GetterNumberDay()
     {
         return numberDay;
+    }
+
+    public int GetterSaving()
+    {
+        return savings;
+    }
+
+    public int GetterEarnings()
+    {
+        return earnings;
+    } 
+    
+    public int GetterCosts()
+    {
+        return costs;
     }
 
     private void StartOfNewDay(params object[] parameters)

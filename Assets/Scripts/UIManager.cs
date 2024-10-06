@@ -1,10 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup introPanel;
+
+    [Header("End Of Day Panel")]
     [SerializeField] private CanvasGroup endDayPanel;
+    [SerializeField] private TMP_Text dayText;
+    [SerializeField] private TMP_Text savingsText;
+    [SerializeField] private TMP_Text earningsText;
+    [SerializeField] private TMP_Text costOfDayText;
+    [SerializeField] private TMP_Text newSavingsText;
 
     [SerializeField] private float timerIntro;
 
@@ -19,10 +27,11 @@ public class UIManager : MonoBehaviour
     public void ButtonStartGame()
     {
         LeanTween.alphaCanvas(introPanel, 0, timerIntro)
-            .setOnComplete(()=> {
+            .setOnComplete(() =>
+            {
                 introPanel.interactable = false;
                 introPanel.blocksRaycasts = false;
-                });
+            });
         EventManager.TriggerEvent(EventNames._OnStartNewDay);
         Cursor.visible = false;
     }
@@ -31,7 +40,8 @@ public class UIManager : MonoBehaviour
     public void ButtonStartNewDay()
     {
         LeanTween.alphaCanvas(endDayPanel, 0, timerIntro)
-                        .setOnComplete(() => {
+                        .setOnComplete(() =>
+                        {
                             endDayPanel.interactable = false;
                             endDayPanel.blocksRaycasts = false;
                         });
@@ -41,8 +51,15 @@ public class UIManager : MonoBehaviour
 
     private void EndDayScreen(params object[] parameters)
     {
+        dayText.text = "Day " + GameManager.Instance.GetterNumberDay().ToString();
+        savingsText.text = "$" + GameManager.Instance.GetterSaving().ToString();
+        earningsText.text = "$" + GameManager.Instance.GetterEarnings().ToString();
+        costOfDayText.text = "$" + GameManager.Instance.GetterCosts().ToString();
+        newSavingsText.text = "$" + GameManager.Instance.GetterSaving().ToString();
+
         LeanTween.alphaCanvas(endDayPanel, 1, timerIntro)
-                                    .setOnComplete(() => {
+                                    .setOnComplete(() =>
+                                    {
                                         endDayPanel.interactable = true;
                                         endDayPanel.blocksRaycasts = true;
                                     });
