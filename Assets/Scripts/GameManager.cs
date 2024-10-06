@@ -114,6 +114,8 @@ public class GameManager : MonoBehaviour
 
         _crIsBusy = false;
 
+        earnings += (int)parameters[0];
+
         if (!isWokingHour) EndOfFullDay();
 
         if (!_clients.Any()) return;

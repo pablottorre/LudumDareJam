@@ -43,7 +43,7 @@ public class GeneralCR : MonoBehaviour
             amountToAdd = (float)parameters[0];
             totalAmount += amountToAdd;
             EventManager.TriggerEvent(EventNames._OnCashItem);
-            OnItemSuccessufullyInput((ItemType)parameters[3], amountToAdd.ToString());
+            OnItemSuccessufullyInput((ItemType)parameters[3], (int)amountToAdd);
         }
         else
         {
@@ -79,20 +79,20 @@ public class GeneralCR : MonoBehaviour
 
         if (checkForItemsExist)
         {
-            OnItemSuccessufullyInput((ItemType)parameters[1], amountToAdd.ToString());
+            OnItemSuccessufullyInput((ItemType)parameters[1], (int)amountToAdd);
         }
     }
 
-    private void OnItemSuccessufullyInput(ItemType itemScanned, string moneyToGain)
+    private void OnItemSuccessufullyInput(ItemType itemScanned, int moneyToGain)
     {
-        monitor.ItemTipedSuccess(moneyToGain);
+        monitor.ItemTipedSuccess(moneyToGain.ToString());
         totalCashMde.text = "$" + totalAmount;
         itemsFromClient.Remove(itemScanned);
 
         if (itemsFromClient.Count == 0)
         {
             Debug.Log("Complete el cliente");
-            EventManager.TriggerEvent(EventNames._OnFinishBuy);
+            EventManager.TriggerEvent(EventNames._OnFinishBuy, moneyToGain);
         }
         else
         {
