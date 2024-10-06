@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6773821609825279669}
   - component: {fileID: 471981729200990518}
   m_Layer: 7
-  m_Name: KeyboardButton (4)
+  m_Name: KeyboardButtonEnter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 5227384559849417677}
   - component: {fileID: 5839691819264057587}
   m_Layer: 7
-  m_Name: KeyboardButton (8)
+  m_Name: KeyboardButton-9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 3018450316494154233}
   - component: {fileID: 2442748960865477121}
   m_Layer: 7
-  m_Name: KeyboardButton (11)
+  m_Name: KeyboardButtonDelete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 768954540093941722}
   - component: {fileID: 546206008712202903}
   m_Layer: 7
-  m_Name: KeyboardButton
+  m_Name: KeyboardButton-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,7 +593,7 @@ GameObject:
   - component: {fileID: 1381298563412111668}
   - component: {fileID: 592871393037752810}
   m_Layer: 7
-  m_Name: KeyboardButton (2)
+  m_Name: KeyboardButton-3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 5475748863655956638}
   - component: {fileID: 6499168782689916193}
   m_Layer: 7
-  m_Name: KeyboardButton (1)
+  m_Name: KeyboardButton-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -897,15 +897,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 553323048680451053}
   - {fileID: 3379888590238895290}
-  - {fileID: 2538243949215906113}
-  - {fileID: 1489538209266248468}
+  - {fileID: 553323048680451053}
   - {fileID: 878135544633572669}
-  - {fileID: 5387940499562145906}
   - {fileID: 1871313451249677378}
-  - {fileID: 9058614810668643001}
   - {fileID: 2474613398339551154}
+  - {fileID: 1489538209266248468}
+  - {fileID: 2538243949215906113}
+  - {fileID: 5387940499562145906}
+  - {fileID: 9058614810668643001}
   - {fileID: 8294019691206068917}
   - {fileID: 6873845609757116302}
   - {fileID: 1282084191991668113}
@@ -927,7 +927,7 @@ GameObject:
   - component: {fileID: 9027866801894602688}
   - component: {fileID: 7224761223397682704}
   m_Layer: 7
-  m_Name: KeyboardButton (7)
+  m_Name: KeyboardButton-8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1072,7 +1072,7 @@ GameObject:
   - component: {fileID: 6118830780686276966}
   - component: {fileID: 8854083693037188045}
   m_Layer: 7
-  m_Name: KeyboardButton (6)
+  m_Name: KeyboardButton-7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,7 +1217,7 @@ GameObject:
   - component: {fileID: 1482179348685406064}
   - component: {fileID: 63067533780274724}
   m_Layer: 7
-  m_Name: KeyboardButton (9)
+  m_Name: KeyboardButton-0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1362,7 +1362,7 @@ GameObject:
   - component: {fileID: 8472052710764298673}
   - component: {fileID: 5522617925920936385}
   m_Layer: 7
-  m_Name: KeyboardButton (10)
+  m_Name: KeyboardButton-5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,7 +1507,7 @@ GameObject:
   - component: {fileID: 3321554992638132200}
   - component: {fileID: 3723966241479981962}
   m_Layer: 7
-  m_Name: KeyboardButton (3)
+  m_Name: KeyboardButton-4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1652,7 +1652,7 @@ GameObject:
   - component: {fileID: 4774811201977319901}
   - component: {fileID: 220358816501351505}
   m_Layer: 7
-  m_Name: KeyboardButton (5)
+  m_Name: KeyboardButton-6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
