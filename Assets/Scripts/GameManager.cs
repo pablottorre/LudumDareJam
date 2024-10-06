@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform _originalSpawnPoint;
 
 
-    private readonly List<Client> _clients = new List<Client>();
-    [SerializeField] private float _timerForNewClient = 8;
+    private List<Client> _clients = new List<Client>();
+    [SerializeField] private float _maxTimerForNewClient = 8;
+    private float _timerForNewClient;
     private SimplePool<Client> _clientsPool;
 
 
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("Spawn Points for items just ahead of the CR, so can just be dropped by physics")]
     private Transform[] _spawnPoints;
 
-
+    private bool isWokingHour;
 
     private bool _crIsBusy = false;
 
@@ -35,6 +36,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, Tooltip("Client Prefab")]
     private Client _clientPrefab;
+
+
+    [Header("General Game Settings")]
+    [SerializeField] private int numberDay;
 
     private void Awake()
     {
@@ -52,21 +57,32 @@ public class GameManager : MonoBehaviour
         foreach (var item in _itemsPrefabs)
         {
             if (_itemsPool.ContainsKey(item.Type)) continue;
-            
+
             _itemsPool.Add(item.Type,
                 new SimplePool<Item>(() => Instantiate(item)));
         }
 
         _clientsPool = new SimplePool<Client>(() => Instantiate(_clientPrefab));
+
+        _timerForNewClient = _maxTimerForNewClient;
+    }
+
+    private void Start()
+    {
+        EventManager.SubscribeToEvent(EventNames._OnEndWorkNewDay, EndOfTimerDay);
+        EventManager.SubscribeToEvent(EventNames._OnStartNewDay, StartOfNewDay);
     }
 
     private void Update()
     {
+        if (!isWokingHour)
+            return;
+
         _timerForNewClient -= Time.deltaTime;
         if (_timerForNewClient < 0 && _clients.Count < _queueNodes.Length)
         {
             _clients.Add(_clientsPool.EnableObject(_queueNodes[_clients.Count]));
-            _timerForNewClient = 8;
+            _timerForNewClient = _maxTimerForNewClient;
 
             if (!_crIsBusy)
             {
@@ -95,6 +111,8 @@ public class GameManager : MonoBehaviour
 
         _crIsBusy = false;
 
+        if (!isWokingHour) EndOfFullDay();
+
         if (!_clients.Any()) return;
 
         for (var i = 0; i < _clients.Count; i++)
@@ -105,4 +123,40 @@ public class GameManager : MonoBehaviour
 
         AttendNextClient();
     }
+
+
+    private void EndOfTimerDay(params object[] parameters)
+    {
+        for (int i = 1; i < _clients.Count; i++)
+        {
+            _clients[i].OnFinishBuy();
+        }
+
+        _clients = new List<Client>() { _clients[0]};
+        isWokingHour = false;
+    }
+
+    private void EndOfFullDay()
+    {
+        EventManager.TriggerEvent(EventNames._OnEndNewDay);
+    }
+
+
+    public int GetterNumberDay()
+    {
+        return numberDay;
+    }
+
+    private void StartOfNewDay(params object[] parameters)
+    {
+        numberDay++;
+        isWokingHour = true;
+    } 
+    
+    [ContextMenu("Test")]
+    private void Bla()
+    {
+        EventManager.TriggerEvent(EventNames._OnStartNewDay);
+    }
+
 }

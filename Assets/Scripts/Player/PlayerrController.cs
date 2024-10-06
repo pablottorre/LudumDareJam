@@ -27,9 +27,13 @@ public class PlayerrController : MonoBehaviour
     private bool canJump = true;
     private bool canMove = true;
 
+    private bool hasStartedDay = false;
+
     private void Awake()
     {
         EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuy);
+        EventManager.SubscribeToEvent(EventNames._OnStartNewDay, HasStartedNewDay);
+        EventManager.SubscribeToEvent(EventNames._OnEndNewDay, HasFinishedNewDay);
     }
 
     void Start()
@@ -40,6 +44,8 @@ public class PlayerrController : MonoBehaviour
 
     void Update()
     {
+        if (!hasStartedDay) return;
+
         if (Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             canMove = false;
@@ -145,5 +151,15 @@ public class PlayerrController : MonoBehaviour
     {
         canMove = value;
         canJump = value;
+    }
+
+    private void HasStartedNewDay(params object[] parameters)
+    {
+        hasStartedDay = true;
+    }
+    
+    private void HasFinishedNewDay(params object[] parameters)
+    {
+        hasStartedDay = false;
     }
 }

@@ -29,7 +29,6 @@ public class KeyboardCR : MonoBehaviour
 
     public void ReturnToOriginalPos()
     {
-        Debug.Log("taqueteprio");
         LeanTween.move(buttonToMove, originalPos.position, timerAnimation);
     }
 
