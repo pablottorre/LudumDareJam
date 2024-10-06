@@ -64,7 +64,10 @@ public class TimeSystem : MonoBehaviour
         return maxTimer;
     }
         
-
+    public void SetterMaxTimer(float value)
+    {
+        maxTimer = value;
+    }
 
     public void KeepCountingTime(params object[] parameters)
     {

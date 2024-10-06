@@ -40,9 +40,11 @@ public class GameManager : MonoBehaviour
 
     [Header("General Game Settings")]
     [SerializeField] private int numberDay;
-    [SerializeField] private int savings;
-    [SerializeField] private int earnings;
+    private int savings;
+    private int earnings;
     [SerializeField] private int costs;
+    [SerializeField] private List<int> listOfCosts = new List<int>();
+    [SerializeField] private List<float> listOfTimers = new List<float>();
 
     private void Awake()
     {
@@ -144,6 +146,17 @@ public class GameManager : MonoBehaviour
     private void EndOfFullDay()
     {
         EventManager.TriggerEvent(EventNames._OnEndNewDay);
+        if (numberDay >= listOfCosts.Count )
+            costs = listOfCosts[listOfCosts.Count];
+        else
+            costs = listOfCosts[numberDay];
+
+        
+        if (numberDay >= listOfTimers.Count )
+            TimeSystem.instance.SetterMaxTimer(listOfTimers[listOfTimers.Count]);
+        else
+            TimeSystem.instance.SetterMaxTimer(numberDay);
+        
     }
 
 
@@ -174,11 +187,5 @@ public class GameManager : MonoBehaviour
         isWokingHour = true;
         earnings = 0;
     } 
-    
-    [ContextMenu("Test")]
-    private void Bla()
-    {
-        EventManager.TriggerEvent(EventNames._OnStartNewDay);
-    }
 
 }
