@@ -8,14 +8,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject modelPlayer;
     [SerializeField] private float timerJump;
 
+    private Vector3 _modelPos;
+    
     private void Start()
     {
+        _modelPos = modelPlayer.transform.localPosition;
         _rb = GetComponent<Rigidbody>();
     }
 
 
     public void MovePlayer(Vector3 dir)
     {
+        modelPlayer.transform.localPosition = _modelPos;
         dir.y = _rb.linearVelocity.y;
         _rb.linearVelocity = dir;
     }

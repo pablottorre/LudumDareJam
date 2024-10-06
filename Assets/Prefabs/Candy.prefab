@@ -97,7 +97,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3373959747755418835}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: a9e948bd937533346b40279bc4a523ba, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -159,6 +159,9 @@ MonoBehaviour:
   _codeSticker: {fileID: 0}
   _registerSticker: {fileID: 7878416740430382682}
   canBeScanned: 1
+  hasBeenCashed: 0
+  _draggingVelocity: 0
+  _draggingDistance: 0
 --- !u!1 &7878416740430382682
 GameObject:
   m_ObjectHideFlags: 0

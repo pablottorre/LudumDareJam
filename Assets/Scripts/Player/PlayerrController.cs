@@ -44,7 +44,6 @@ public class PlayerrController : MonoBehaviour
         {
             canMove = false;
             canJump = false;
-            StartCoroutine(cdJump());
 
             if (buttonBelow)
             {
@@ -65,9 +64,18 @@ public class PlayerrController : MonoBehaviour
             moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
             moveDirection.Normalize();
             moveDirection.y = 0;
-            if (moveDirection.magnitude != 0)
+            if (!isCarryingItem || objectCarrying.canBeScanned)
             {
-                transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+                if (moveDirection.magnitude != 0)
+                {
+                    transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                var objectDir =objectCarrying.transform.position - transform.position;
+                objectDir.y = 0;
+                transform.forward = objectDir;
             }
 
             _pm.MovePlayer(moveDirection * moveSpeed);
@@ -96,16 +104,6 @@ public class PlayerrController : MonoBehaviour
                 isCarryingItem = true;
             }
         }
-    }
-
-    private void FixedUpdate()
-    {
-    }
-
-    IEnumerator cdJump()
-    {
-        yield return new WaitForSecondsRealtime(cdPressButton);
-        canJump = true;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -145,5 +143,6 @@ public class PlayerrController : MonoBehaviour
     public void SetterCanMove(bool value)
     {
         canMove = value;
+        canJump = value;
     }
 }

@@ -42,6 +42,7 @@ public class GeneralCR : MonoBehaviour
             Debug.Log("Can be scanned");
             amountToAdd = (float)parameters[0];
             totalAmount += amountToAdd;
+            EventManager.TriggerEvent(EventNames._OnCashItem);
             OnItemSuccessufullyInput((ItemType)parameters[3], amountToAdd.ToString());
         }
         else

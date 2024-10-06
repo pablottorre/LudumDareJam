@@ -27,16 +27,20 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     private Transform _followPoint;
 
+    [SerializeField] private float _draggingVelocity;
+    [SerializeField] private float _draggingDistance;
+
     private void LateUpdate()
     {
         if (_followPoint == null) return;
-       
+
         if (canBeScanned)
         {
             transform.position = _followPoint.position;
         }
         else
         {
+            //_collider.bounds.extents.x
             transform.position = new Vector3(_followPoint.position.x, transform.position.y, _followPoint.position.z);
         }
     }
@@ -66,6 +70,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
         EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuyEvent);
         EventManager.SubscribeToEvent(EventNames._OnCheckCode, OnCheckCode);
+        EventManager.SubscribeToEvent(EventNames._OnCashItem, OnCashed);
     }
 
     public string GetterActualCode()
@@ -77,6 +82,9 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     {
         EventManager.UnsuscribeToEvent(EventNames._OnFinishBuy, OnFinishBuyEvent);
         EventManager.UnsuscribeToEvent(EventNames._OnCheckCode, OnCheckCode);
+        EventManager.UnsuscribeToEvent(EventNames._OnCashItem, OnCashed);
+        hasBeenCashed = false;
+        _followPoint = null;
         _registerSticker.SetActive(false);
         gameObject.SetActive(false);
     }
@@ -85,7 +93,6 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     private void OnFinishBuyEvent(params object[] parameters)
     {
-        hasBeenCashed = false;
         _returnFunction(this);
     }
 
@@ -124,5 +131,13 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         }
 
         return this;
+    }
+
+    private void OnCashed(params object[] parameters)
+    {
+        if (_followPoint!=null)
+        {
+            hasBeenCashed = true;
+        }
     }
 }
