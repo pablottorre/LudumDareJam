@@ -11,11 +11,15 @@ public class MonitorCR : MonoBehaviour
     private string _correctCode = string.Empty;
     private string _currentCode = string.Empty;
 
-    public void ItemTipedSuccess(string value)
+    public void ItemTipedSuccess(string value, bool isCodeItem = true)
     {
+        if (isCodeItem)
+        {
+            _currentCode = "";
+        }
+
         bgCodeText.text = "";
         _correctCode = "";
-        _currentCode = "";
         codeText.text = "+$" + value;
         StartCoroutine(CleanMonitor());
     }
@@ -30,7 +34,9 @@ public class MonitorCR : MonoBehaviour
     private IEnumerator CleanMonitor()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        codeText.text = "";
+        
+        codeText.text = _currentCode.Equals(string.Empty)? string.Empty : _currentCode;
+        
         bgCodeText.text = "";
     }
 
@@ -50,7 +56,8 @@ public class MonitorCR : MonoBehaviour
         {
             int lastCharacterIndex = value.Length - 1;
 
-            if (_correctCode == string.Empty || (lastCharacterIndex < _correctCode.Length && value[lastCharacterIndex] == _correctCode[lastCharacterIndex]))
+            if (_correctCode == string.Empty || (lastCharacterIndex < _correctCode.Length &&
+                                                 value[lastCharacterIndex] == _correctCode[lastCharacterIndex]))
             {
                 result += $"<color=white>{value[lastCharacterIndex]}</color>";
             }
@@ -59,12 +66,13 @@ public class MonitorCR : MonoBehaviour
                 result += $"<color=red>{value[lastCharacterIndex]}</color>";
             }
         }
+
         codeText.text = result;
     }
 
     public void RemoveLastInput(string value)
-    {        
-        _currentCode= value;
+    {
+        _currentCode = value;
         codeText.text = _currentCode;
     }
 
@@ -73,5 +81,4 @@ public class MonitorCR : MonoBehaviour
         _correctCode = value;
         bgCodeText.text = _correctCode;
     }
-
 }

@@ -43,7 +43,7 @@ public class GeneralCR : MonoBehaviour
             amountToAdd = (float)parameters[0];
             totalAmount += amountToAdd;
             EventManager.TriggerEvent(EventNames._OnCashItem);
-            OnItemSuccessufullyInput((ItemType)parameters[3], (int)amountToAdd);
+            OnItemSuccessufullyInput((ItemType)parameters[3], (int)amountToAdd, false);
         }
         else
         {
@@ -83,9 +83,9 @@ public class GeneralCR : MonoBehaviour
         }
     }
 
-    private void OnItemSuccessufullyInput(ItemType itemScanned, int moneyToGain)
+    private void OnItemSuccessufullyInput(ItemType itemScanned, int moneyToGain, bool isCodeItem = true)
     {
-        monitor.ItemTipedSuccess(moneyToGain.ToString());
+        monitor.ItemTipedSuccess(moneyToGain.ToString(), isCodeItem);
         totalCashMde.text = "$" + totalAmount;
         itemsFromClient.Remove(itemScanned);
 
