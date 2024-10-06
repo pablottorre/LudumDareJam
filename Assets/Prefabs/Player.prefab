@@ -155,6 +155,10 @@ MonoBehaviour:
   _pc: {fileID: 0}
   modelPlayer: {fileID: 0}
   timerJump: 0
+  _checkDistance: 1
+  _keysLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!54 &3991841300553166754
 Rigidbody:
   m_ObjectHideFlags: 0

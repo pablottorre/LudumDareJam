@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float timerJump;
 
     private Vector3 _modelPos;
+
+    [SerializeField] private float _checkDistance;
+    [SerializeField] private LayerMask _keysLayer;
     
     private void Start()
     {
@@ -41,9 +44,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _pc.SetterCanMove(true);
 
-        if (goingToPressButton)
+        if (Physics.Raycast(transform.position, Vector3.down, out var raycastHit, _checkDistance, _keysLayer)
+            || Physics.Raycast(transform.position + Vector3.right, Vector3.down, out raycastHit, _checkDistance, _keysLayer)
+            || Physics.Raycast(transform.position + Vector3.left, Vector3.down, out raycastHit, _checkDistance, _keysLayer)
+            || Physics.Raycast(transform.position + Vector3.forward, Vector3.down, out raycastHit, _checkDistance, _keysLayer)
+            || Physics.Raycast(transform.position + Vector3.back, Vector3.down, out raycastHit, _checkDistance, _keysLayer))
         {
-            EventManager.TriggerEvent(EventNames._PressButton);
+            raycastHit.collider.GetComponent<Keyboard>().PressButonRegistery();
         }
     }
 }

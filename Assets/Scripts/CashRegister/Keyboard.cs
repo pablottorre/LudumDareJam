@@ -12,17 +12,14 @@ public class Keyboard : MonoBehaviour
 
     [SerializeField] protected float timerAnimation;
 
-    protected  void Start()
+    protected void Start()
     {
         EventManager.SubscribeToEvent(EventNames._PressButton, PressButonRegistery);
     }
 
-    protected virtual void PressButonRegistery(params object[] parameters)
+    public virtual void PressButonRegistery(params object[] parameters)
     {
-        if (playerOnTop)
-        {
-            LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
-        }
+        LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
     }
 
     public void ReturnToOriginalPos()
