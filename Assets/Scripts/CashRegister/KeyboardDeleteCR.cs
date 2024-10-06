@@ -1,23 +1,15 @@
 using UnityEngine;
 
-public class KeyboardDeleteCR : MonoBehaviour
+public class KeyboardDeleteCR : Keyboard
 {
-    [SerializeField] private GeneralCR _generalCR;
-
-    private bool playerOnTop = false;
-
-    [SerializeField] private GameObject buttonToMove;
-    [SerializeField] private Transform originalPos;
-    [SerializeField] private Transform pressedPos;
-
-    [SerializeField] private float timerAnimation;
 
     private void Start()
     {
-        EventManager.SubscribeToEvent(EventNames._PressButton, PressButonRegistery);
+        base.Start();
     }
 
-    public void PressButonRegistery(params object[] parameters)
+
+    protected override void PressButonRegistery(params object[] parameters)
     {
         if (playerOnTop)
         {
@@ -26,23 +18,4 @@ public class KeyboardDeleteCR : MonoBehaviour
         }
     }
 
-    public void ReturnToOriginalPos()
-    {
-        LeanTween.move(buttonToMove, originalPos.position, timerAnimation);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 3)
-        {
-            playerOnTop = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 3)
-        {
-            playerOnTop = false;
-        }
-    }
 }

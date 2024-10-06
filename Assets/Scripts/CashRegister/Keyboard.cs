@@ -1,0 +1,32 @@
+using UnityEngine;
+
+public class Keyboard : MonoBehaviour
+{
+    [SerializeField] protected GeneralCR _generalCR;
+
+    protected bool playerOnTop = false;
+
+    [SerializeField] protected GameObject buttonToMove;
+    [SerializeField] protected Transform originalPos;
+    [SerializeField] protected Transform pressedPos;
+
+    [SerializeField] protected float timerAnimation;
+
+    protected  void Start()
+    {
+        EventManager.SubscribeToEvent(EventNames._PressButton, PressButonRegistery);
+    }
+
+    protected virtual void PressButonRegistery(params object[] parameters)
+    {
+        if (playerOnTop)
+        {
+            LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
+        }
+    }
+
+    public void ReturnToOriginalPos()
+    {
+        LeanTween.move(buttonToMove, originalPos.position, timerAnimation);
+    }
+}
