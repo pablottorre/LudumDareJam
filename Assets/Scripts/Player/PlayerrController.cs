@@ -67,10 +67,13 @@ public class PlayerrController : MonoBehaviour
             moveDirection = Vector3.right * moveX + Vector3.forward * moveZ;
             moveDirection.Normalize();
             moveDirection.y = 0;
-            transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+            if (moveDirection.magnitude != 0)
+            {
+                transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+            }
+
             _pm.MovePlayer(moveDirection * moveSpeed);
         }
-
 
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -137,7 +140,7 @@ public class PlayerrController : MonoBehaviour
     private void OnFinishBuy(params object[] parameters)
     {
         isCarryingItem = false;
-        objectCarrying.Interact(false);
+        objectCarrying?.Interact(false);
         objectCarrying = null;
     }
 

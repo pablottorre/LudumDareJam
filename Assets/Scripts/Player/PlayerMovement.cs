@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void JumpPlayer(bool isButtonBelow)
     {
+        _rb.linearVelocity = Vector3.zero;
         LeanTween.move(modelPlayer, modelPlayer.transform.position + new Vector3(0,0.5f,0), timerJump).setEaseOutCubic()
             .setOnComplete(() => PlayerFinishJump(isButtonBelow));
     }
