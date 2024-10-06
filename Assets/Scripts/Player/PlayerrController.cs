@@ -68,7 +68,8 @@ public class PlayerrController : MonoBehaviour
             {
                 if (moveDirection.magnitude != 0)
                 {
-                    transform.forward = Vector3.Lerp(transform.forward, moveDirection, _rotationSpeed * Time.deltaTime);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection),
+                        _rotationSpeed * Time.deltaTime);
                 }
             }
             else
