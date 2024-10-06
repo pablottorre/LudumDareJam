@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
      Tooltip(
          "The queue nodes for the clients to follow to get into the CR, this will also limit the max of client at the same time")]
     private Transform[] _queueNodes;
+    [SerializeField] private Transform _originalSpawnPoint;
 
 
     private readonly List<Client> _clients = new List<Client>();
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField, Tooltip("Spawn Points for items just ahead of the CR, so can just be dropped by physics")]
     private Transform[] _spawnPoints;
+
 
 
     private bool _crIsBusy = false;

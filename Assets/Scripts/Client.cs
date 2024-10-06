@@ -12,6 +12,8 @@ public class Client : MonoBehaviour, IPoolObject<Client>
 
     [SerializeField] private int _minItemsAmount, _maxItemsAmount;
 
+    [SerializeField] private List<GameObject> skins = new List<GameObject>();
+
     public void OnCreateObject(Action<Client> returnFunction)
     {
         _returnFunction = returnFunction;
@@ -31,12 +33,18 @@ public class Client : MonoBehaviour, IPoolObject<Client>
 
         transform.position = enablePoint.position;
         transform.rotation = enablePoint.rotation;
+        int randNumb = Random.Range(0, skins.Count);
+        skins[randNumb].SetActive(true);
         gameObject.SetActive(true);
     }
 
     public void OnDisableSetUp()
     {
         gameObject.SetActive(false);
+        for (int i = 0; i < skins.Count; i++)
+        {
+            skins[i].SetActive(false);
+        }
     }
 
     public void OnFinishBuy()
