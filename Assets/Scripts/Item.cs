@@ -23,6 +23,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     public bool canBeScanned;
 
+    public bool hasBeenCashed;
+
     private Transform _followPoint;
 
     private void LateUpdate()
@@ -60,6 +62,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
         gameObject.SetActive(true);
 
+        hasBeenCashed = false;
+
         EventManager.SubscribeToEvent(EventNames._OnFinishBuy, OnFinishBuyEvent);
         EventManager.SubscribeToEvent(EventNames._OnCheckCode, OnCheckCode);
     }
@@ -81,6 +85,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     private void OnFinishBuyEvent(params object[] parameters)
     {
+        hasBeenCashed = false;
         _returnFunction(this);
     }
 
@@ -89,6 +94,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         if (!_registerSticker.activeSelf && _actualCode.Equals((string)parameters[0]))
         {
             _registerSticker.SetActive(true);
+            hasBeenCashed = true;
             EventManager.TriggerEvent(EventNames._OnSuccessCheckCode, Cost, Type);
         }
     }

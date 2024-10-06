@@ -31,6 +31,10 @@ public class GeneralCR : MonoBehaviour
 
     private void PlayerCheckedLaser(params object[] parameters)
     {
+        if ((bool)parameters[5])
+            return;
+
+
         if ((bool)parameters[2])
         {
             Debug.Log("Can be scanned");

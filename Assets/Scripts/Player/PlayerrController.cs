@@ -94,7 +94,8 @@ public class PlayerrController : MonoBehaviour
                 objectCarrying.Name,
                 objectCarrying.canBeScanned,
                 objectCarrying.Type,
-                objectCarrying.GetterActualCode());
+                objectCarrying.GetterActualCode(),
+                objectCarrying.hasBeenCashed);
         }
     }
 
