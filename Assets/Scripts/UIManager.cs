@@ -6,6 +6,9 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private CanvasGroup introPanel;
 
+    [Header("Normal Panel")]
+    [SerializeField] private CanvasGroup normalPanel;
+
     [Header("End Of Day Panel")]
     [SerializeField] private CanvasGroup endDayPanel;
     [SerializeField] private TMP_Text dayText;
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Lose Game Panel")]
     [SerializeField] private CanvasGroup loseGamePanel;
+    [SerializeField] private TMP_Text endOfGameDaysText;
 
     private void Start()
     {
@@ -43,6 +47,7 @@ public class UIManager : MonoBehaviour
             {
                 introPanel.interactable = false;
                 introPanel.blocksRaycasts = false;
+                LeanTween.alphaCanvas(normalPanel, 1, timerIntro);
             });
         EventManager.TriggerEvent(EventNames._OnStartNewDay);
         Cursor.visible = false;
@@ -56,6 +61,7 @@ public class UIManager : MonoBehaviour
                         {
                             endDayPanel.interactable = false;
                             endDayPanel.blocksRaycasts = false;
+                            LeanTween.alphaCanvas(normalPanel, 1, timerIntro);
                         });
         Cursor.visible = false;
         EventManager.TriggerEvent(EventNames._OnStartNewDay);
@@ -63,6 +69,8 @@ public class UIManager : MonoBehaviour
 
     public void ButtonEndTheGame()
     {
+        endOfGameDaysText.text = GameManager.Instance.GetterNumberDay().ToString();
+
         LeanTween.alphaCanvas(loseGamePanel, 1, timerIntro)
                                    .setOnComplete(() =>
                                    {
@@ -70,6 +78,7 @@ public class UIManager : MonoBehaviour
                                        loseGamePanel.blocksRaycasts = true;
                                    });
         Cursor.visible = true;
+
     }
 
     private void EndDayScreen(params object[] parameters)
