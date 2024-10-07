@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Completly Normal Supermarket
+  m_text: completely normal Supermarket
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ce0e8e38477eb8a4681c587036c60ccf, type: 2}
   m_sharedMaterial: {fileID: -1062566266530264611, guid: ce0e8e38477eb8a4681c587036c60ccf, type: 2}
