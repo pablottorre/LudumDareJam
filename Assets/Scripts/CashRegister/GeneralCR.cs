@@ -23,6 +23,9 @@ public class GeneralCR : MonoBehaviour
 
     [SerializeField] private int _maxChars;
 
+    [Header("Audios")]
+    [SerializeField] private AudioSource _asScanner;
+
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._CheckForLaser, PlayerCheckedLaser);
@@ -36,6 +39,8 @@ public class GeneralCR : MonoBehaviour
     {
         if ((bool)parameters[5])
             return;
+
+        PlaySoundScannedProduct();
 
 
         if ((bool)parameters[2])
@@ -135,4 +140,8 @@ public class GeneralCR : MonoBehaviour
         totalCashMde.text = "$" + totalAmount;
     }
 
+    public void PlaySoundScannedProduct()
+    {
+        SoundManager.Instance.PlaySFX(_asScanner.GetHashCode());
+    }
 }

@@ -12,6 +12,8 @@ public class Keyboard : MonoBehaviour
 
     [SerializeField] protected float timerAnimation;
 
+    [SerializeField] private AudioSource _as;
+
     protected void Start()
     {
         EventManager.SubscribeToEvent(EventNames._PressButton, PressButonRegistery);
@@ -25,5 +27,10 @@ public class Keyboard : MonoBehaviour
     public void ReturnToOriginalPos()
     {
         LeanTween.move(buttonToMove, originalPos.position, timerAnimation);
+    }
+
+    public void PlaySound()
+    {
+        SoundManager.Instance.PlaySFX(_as.GetHashCode());
     }
 }

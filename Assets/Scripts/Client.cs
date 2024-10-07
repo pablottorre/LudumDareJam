@@ -14,6 +14,8 @@ public class Client : MonoBehaviour, IPoolObject<Client>
 
     [SerializeField] private List<GameObject> skins = new List<GameObject>();
 
+    [SerializeField] private AudioSource _asSpawn;
+
     public void OnCreateObject(Action<Client> returnFunction)
     {
         _returnFunction = returnFunction;
@@ -33,6 +35,7 @@ public class Client : MonoBehaviour, IPoolObject<Client>
 
         transform.position = enablePoint.position;
         transform.rotation = enablePoint.rotation;
+        PlaySoundScannedProduct()
         int randNumb = Random.Range(0, skins.Count);
         skins[randNumb].SetActive(true);
         gameObject.SetActive(true);
@@ -50,5 +53,10 @@ public class Client : MonoBehaviour, IPoolObject<Client>
     public void OnFinishBuy()
     {
         _returnFunction(this);
+    }
+
+    public void PlaySoundScannedProduct()
+    {
+        SoundManager.Instance.PlaySFX(_asSpawn.GetHashCode());
     }
 }

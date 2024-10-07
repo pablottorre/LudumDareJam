@@ -13,6 +13,7 @@ public class KeyboardCR : Keyboard
     public override void PressButonRegistery(params object[] parameters)
     {
         _generalCR.AddKeyboardInput(inputToShare);
+        PlaySound();
         LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
     }
 }

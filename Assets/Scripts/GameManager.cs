@@ -152,9 +152,6 @@ public class GameManager : MonoBehaviour
         else
             costs = listOfCosts[numberDay];
 
-        Debug.Log(earnings);
-        Debug.Log(savings);
-        Debug.Log(costs);
 
         if ((earnings + savings) >= costs)
             playerLoseTheGame = false;

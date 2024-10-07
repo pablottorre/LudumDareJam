@@ -11,6 +11,7 @@ public class KeyboardDeleteCR : Keyboard
     public override void PressButonRegistery(params object[] parameters)
     {
         _generalCR.RemoveLastLetter();
+        PlaySound();
         LeanTween.move(buttonToMove, pressedPos.position, timerAnimation).setOnComplete(() => ReturnToOriginalPos());
     }
 }
