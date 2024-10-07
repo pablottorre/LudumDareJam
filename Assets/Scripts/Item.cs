@@ -13,7 +13,7 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     [SerializeField] private int _minCodeLength, _maxCodeLength;
     [SerializeField] private string _actualCode;
-    [SerializeField] private GameObject _codeSticker, _registerSticker;
+    [SerializeField] private List<GameObject> _registerStickers =  new List<GameObject>();
 
     private Action<Item> _returnFunction;
 
@@ -32,6 +32,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
     [SerializeField] private float _draggingDistance;
 
     [SerializeField] private List<GameObject> listOfSkins = new List<GameObject>();
+
+    private int numberRandom;
 
     private void LateUpdate()
     {
@@ -70,11 +72,12 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         if (listOfSkins.Count == 1)
         {
             listOfSkins[0].SetActive(true);
+            _registerStickers[0].SetActive(true);
         }
         else
         {
-            int randNumb = Random.Range(0, listOfSkins.Count);
-            listOfSkins[randNumb].SetActive(true);
+            numberRandom = Random.Range(0, listOfSkins.Count);
+            listOfSkins[numberRandom].SetActive(true);
         }
 
         gameObject.SetActive(true);
@@ -98,12 +101,16 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         EventManager.UnsuscribeToEvent(EventNames._OnCashItem, OnCashed);
         hasBeenCashed = false;
         _followPoint = null;
-        _registerSticker.SetActive(false);
         gameObject.SetActive(false);
 
         for (int i = 0; i < listOfSkins.Count; i++)
         {
             listOfSkins[i].SetActive(false);
+        }
+
+        for (int i = 0; i < _registerStickers.Count; i++)
+        {
+            _registerStickers[i].SetActive(false);
         }
     }
 
@@ -116,9 +123,9 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     private void OnCheckCode(params object[] parameters)
     {
-        if (!_registerSticker.activeSelf && _actualCode.Equals((string)parameters[0]))
+        if (!_registerStickers[numberRandom].activeSelf && _actualCode.Equals((string)parameters[0]))
         {
-            _registerSticker.SetActive(true);
+            _registerStickers[numberRandom].SetActive(true);
             hasBeenCashed = true;
             EventManager.TriggerEvent(EventNames._OnSuccessCheckCode, Cost, Type);
         }
