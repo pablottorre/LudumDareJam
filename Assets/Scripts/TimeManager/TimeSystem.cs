@@ -72,6 +72,7 @@ public class TimeSystem : MonoBehaviour
     public void KeepCountingTime(params object[] parameters)
     {
         startCounting = true;
+
     }
 
     private void StopCountingTime(params object[] parameters)

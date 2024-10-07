@@ -8,14 +8,25 @@ public class UIManager : MonoBehaviour
 
     [Header("Normal Panel")]
     [SerializeField] private CanvasGroup normalPanel;
+    [SerializeField] private TMP_Text dayTextNormalPanel;
 
     [Header("End Of Day Panel")]
     [SerializeField] private CanvasGroup endDayPanel;
     [SerializeField] private TMP_Text dayText;
     [SerializeField] private TMP_Text savingsText;
     [SerializeField] private TMP_Text earningsText;
+    [SerializeField] private TMP_Text milkMoneyText;
+    [SerializeField] private TMP_Text milkAmountText;
+    [SerializeField] private TMP_Text butterMoneyText;
+    [SerializeField] private TMP_Text butterAmountText;
+    [SerializeField] private TMP_Text canMoneyText;
+    [SerializeField] private TMP_Text canAmountText;
+    [SerializeField] private TMP_Text candyMoneyText;
+    [SerializeField] private TMP_Text candyAmountText;
+
+
     [SerializeField] private TMP_Text costOfDayText;
-    [SerializeField] private TMP_Text newSavingsText;
+    [SerializeField] private TMP_Text totalText;
 
     [SerializeField] private float timerIntro;
 
@@ -29,6 +40,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        EventManager.SubscribeToEvent(EventNames._OnStartNewDay, StartNewDay);
         EventManager.SubscribeToEvent(EventNames._OnEndNewDay, EndDayScreen);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -86,8 +98,20 @@ public class UIManager : MonoBehaviour
         dayText.text = "Day " + GameManager.Instance.GetterNumberDay().ToString();
         savingsText.text = "$" + GameManager.Instance.GetterSaving().ToString();
         earningsText.text = "$" + GameManager.Instance.GetterEarnings().ToString();
+
+        milkAmountText.text = "(" +  ")";
+        butterAmountText.text = "(" +  ")";
+        canAmountText.text = "(" +  ")";
+        candyAmountText.text = "(" +  ")"; 
+        
+        
+       /* milkMoneyText.text = ;
+        butterMoneyText.text = ;
+        canMoneyText.text = ;
+        candyMoneyText.text = ;*/
+
         costOfDayText.text = "$" + GameManager.Instance.GetterCosts().ToString();
-        newSavingsText.text = "$" + GameManager.Instance.GetterSaving().ToString();
+        totalText.text = "$" + GameManager.Instance.GetterSaving().ToString();
 
         LeanTween.alphaCanvas(endDayPanel, 1, timerIntro)
                                     .setOnComplete(() =>
@@ -110,7 +134,10 @@ public class UIManager : MonoBehaviour
 
     }
 
-
+    private void StartNewDay(params object[] parameters)
+    {
+        dayTextNormalPanel.text = GameManager.Instance.GetterNumberDay().ToString();
+    }
 
 
 }
