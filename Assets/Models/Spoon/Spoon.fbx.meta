@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c36f20b11f94a584dbbd92a9adf3d54b
+guid: 6ad93632939d37f4fb5092c03784c8e2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: ButtleMat
-    second: {fileID: 2100000, guid: 6413b55e34af1a14586baca7b2469981, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LabelMat
-    second: {fileID: 2100000, guid: 21401b977ee3c074ca23f055f844b856, type: 2}
+      name: SpoonMat
+    second: {fileID: 2100000, guid: fa1340f95c4493540a4e3abc7e2d98cd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,7 +38,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 50
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -98,7 +93,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 50
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

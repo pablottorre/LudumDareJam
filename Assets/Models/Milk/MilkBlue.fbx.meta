@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: LabelMat
+    second: {fileID: 2100000, guid: 21401b977ee3c074ca23f055f844b856, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: MilkMat
     second: {fileID: 2100000, guid: 3230ce5db4108e1478b86d1b4c8cf7d6, type: 2}
   materials:
