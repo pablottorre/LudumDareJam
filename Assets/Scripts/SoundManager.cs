@@ -123,7 +123,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(int hash)
     {
         if (!_sfxSources.ContainsKey(hash)) return;
-        
+
         _sfxSources[hash].Play();
     }
 
@@ -150,6 +150,14 @@ public class SoundManager : MonoBehaviour
         if (!_musicSources.ContainsKey(hash)) return;
         
         _musicSources[hash].Play();
+    }
+
+    public void PauseMusic()
+    {
+        foreach (var musicSource in _musicSources.Values)
+        {
+            musicSource.Stop();
+        }
     }
 
     #endregion
