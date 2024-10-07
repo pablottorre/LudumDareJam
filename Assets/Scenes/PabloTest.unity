@@ -5532,6 +5532,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1420541766943270855, guid: 0ab6629469c12a844ae4a5d0d212141d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6024208502140160422, guid: 0ab6629469c12a844ae4a5d0d212141d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13026,6 +13030,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1532525945786167565, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 1308511713}
+    - target: {fileID: 1532525945786167565, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
       objectReference: {fileID: 73499382}
@@ -13126,6 +13134,10 @@ PrefabInstance:
       value: 265.626
       objectReference: {fileID: 0}
     - target: {fileID: 1925934994210876644, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
+    - target: {fileID: 1925934994210876644, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
       objectReference: {fileID: 2114995618}
@@ -13169,6 +13181,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 265.626
       objectReference: {fileID: 0}
+    - target: {fileID: 2320199630159096956, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 2320199630159096956, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13221,6 +13237,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2848976185673622072, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 2848976185673622072, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13277,6 +13297,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.x
       value: 265.626
       objectReference: {fileID: 0}
+    - target: {fileID: 3615849434842135098, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 1736577673}
     - target: {fileID: 3615849434842135098, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13366,6 +13390,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4470142665539269846, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
+    - target: {fileID: 4470142665539269846, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
       objectReference: {fileID: 1452060274}
@@ -13385,6 +13413,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4697258857696449213, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 4697258857696449213, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13506,6 +13538,10 @@ PrefabInstance:
       value: 265.626
       objectReference: {fileID: 0}
     - target: {fileID: 5326542302641398988, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
+    - target: {fileID: 5326542302641398988, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
       objectReference: {fileID: 370820711}
@@ -13537,6 +13573,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6937996623892449898, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 6937996623892449898, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13634,6 +13674,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566209862455399121, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
+    - target: {fileID: 8566209862455399121, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
       objectReference: {fileID: 922287119}
@@ -13653,6 +13697,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8688921511675522115, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8819863294361340758, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: m_Name
       value: GeneralCR
@@ -13661,6 +13709,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8946864143556655297, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 8946864143556655297, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
@@ -13733,6 +13785,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.194
       objectReference: {fileID: 0}
+    - target: {fileID: 9178062893026263954, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
+      propertyPath: _as
+      value: 
+      objectReference: {fileID: 815192634}
     - target: {fileID: 9178062893026263954, guid: 3d3a6e6ecc8d13a439aa4243be41e396, type: 3}
       propertyPath: pressedPos
       value: 
