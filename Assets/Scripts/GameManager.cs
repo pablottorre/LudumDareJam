@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<float> listOfTimers = new List<float>();
     public bool playerLoseTheGame = false;
 
+    [SerializeField] private AudioSource _asEndOfDay;
+
     private void Awake()
     {
         if (Instance != null)
@@ -147,6 +149,8 @@ public class GameManager : MonoBehaviour
     private void EndOfFullDay()
     {
 
+        PlaySoundScannedProduct();
+
         if (numberDay >= listOfCosts.Count )
             costs = listOfCosts[listOfCosts.Count];
         else
@@ -202,6 +206,11 @@ public class GameManager : MonoBehaviour
         numberDay++;
         isWokingHour = true;
         earnings = 0;
-    } 
+    }
+
+    public void PlaySoundScannedProduct()
+    {
+        SoundManager.Instance.PlaySFX(_asEndOfDay.GetHashCode());
+    }
 
 }

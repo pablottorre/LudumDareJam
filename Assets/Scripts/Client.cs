@@ -35,7 +35,7 @@ public class Client : MonoBehaviour, IPoolObject<Client>
 
         transform.position = enablePoint.position;
         transform.rotation = enablePoint.rotation;
-        PlaySoundScannedProduct()
+        PlaySoundScannedProduct();
         int randNumb = Random.Range(0, skins.Count);
         skins[randNumb].SetActive(true);
         gameObject.SetActive(true);
