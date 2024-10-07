@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
         candyMoneyText.text = ;*/
 
         costOfDayText.text = "$" + GameManager.Instance.GetterCosts().ToString();
-        totalText.text = "$" + GameManager.Instance.GetterSaving().ToString();
+        totalText.text = "$" + GameManager.Instance.GetterNewTotal().ToString();
 
         LeanTween.alphaCanvas(endDayPanel, 1, timerIntro)
                                     .setOnComplete(() =>

@@ -29,6 +29,7 @@ public class GeneralCR : MonoBehaviour
         EventManager.SubscribeToEvent(EventNames._EndInputOfBarcode, PlayerEndedTipying);
         EventManager.SubscribeToEvent(EventNames._OnSuccessCheckCode, SetCheckItem);
         EventManager.SubscribeToEvent(EventNames._OnClientEnterRegister, OnPlayerGiveItems);
+        EventManager.SubscribeToEvent(EventNames._OnStartNewDay,StartNewDay);
     }
 
     private void PlayerCheckedLaser(params object[] parameters)
@@ -126,6 +127,12 @@ public class GeneralCR : MonoBehaviour
     private void OnPlayerGiveItems(params object[] parameters)
     {
         itemsFromClient = (List<ItemType>)parameters[0];
+    }
+
+    private void StartNewDay(params object[] parameters)
+    {
+        totalAmount = 0;
+        totalCashMde.text = "$" + totalAmount;
     }
 
 }

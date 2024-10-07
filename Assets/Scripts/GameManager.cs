@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     [Header("General Game Settings")]
     [SerializeField] private int numberDay;
-    private int savings;
+    [SerializeField] private int savings;
     private int earnings;
     [SerializeField] private int costs;
     [SerializeField] private List<int> listOfCosts = new List<int>();
@@ -152,6 +152,10 @@ public class GameManager : MonoBehaviour
         else
             costs = listOfCosts[numberDay];
 
+        Debug.Log(earnings);
+        Debug.Log(savings);
+        Debug.Log(costs);
+
         if ((earnings + savings) >= costs)
             playerLoseTheGame = false;
         else
@@ -188,6 +192,11 @@ public class GameManager : MonoBehaviour
     public int GetterCosts()
     {
         return costs;
+    }
+
+    public int GetterNewTotal()
+    {
+        return (earnings + savings) - costs;
     }
 
     private void StartOfNewDay(params object[] parameters)
