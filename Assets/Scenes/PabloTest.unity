@@ -4700,7 +4700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startCounting: 0
-  maxTimer: 15
+  maxTimer: 120
 --- !u!1 &830024540
 GameObject:
   m_ObjectHideFlags: 0
