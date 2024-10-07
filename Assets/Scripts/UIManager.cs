@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
     }
 
+    public void ButtonQuitGame()
+    {
+        Application.Quit();
+    }
+
 
     public void ButtonStartGame()
     {
