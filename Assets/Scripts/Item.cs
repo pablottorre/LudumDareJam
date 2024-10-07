@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +30,8 @@ public class Item : MonoBehaviour, IPoolObject<Item>
 
     [SerializeField] private float _draggingVelocity;
     [SerializeField] private float _draggingDistance;
+
+    [SerializeField] private List<GameObject> listOfSkins = new List<GameObject>();
 
     private void LateUpdate()
     {
@@ -64,6 +67,16 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         transform.position = from.position;
         transform.rotation = from.rotation;
 
+        if (listOfSkins.Count == 1)
+        {
+            listOfSkins[0].SetActive(true);
+        }
+        else
+        {
+            int randNumb = Random.Range(0, listOfSkins.Count);
+            listOfSkins[randNumb].SetActive(true);
+        }
+
         gameObject.SetActive(true);
 
         hasBeenCashed = false;
@@ -87,6 +100,11 @@ public class Item : MonoBehaviour, IPoolObject<Item>
         _followPoint = null;
         _registerSticker.SetActive(false);
         gameObject.SetActive(false);
+
+        for (int i = 0; i < listOfSkins.Count; i++)
+        {
+            listOfSkins[i].SetActive(false);
+        }
     }
 
     #endregion
