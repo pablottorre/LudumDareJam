@@ -13,13 +13,13 @@ public class MusicScripts : MonoBehaviour
 
     private void PlayNormalMusic(params object[] parameters)
     {
-        //TODO: Here add a function to stop other music from playing, as well as this one in loop
+        SoundManager.Instance.PauseMusic();
         SoundManager.Instance.PlayMusic(_asNormalMusic.GetHashCode());
     }
     
     private void PlayEndOfDayMusic(params object[] parameters)
     {
-        //TODO: Here add a function to stop other music from playing, as well as this one in loop
+        SoundManager.Instance.PauseMusic();
         SoundManager.Instance.PlayMusic(_asEndOfDayMusic.GetHashCode());
     }
 
