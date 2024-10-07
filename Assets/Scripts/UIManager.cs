@@ -16,6 +16,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private float timerIntro;
 
+
+    [SerializeField] private GameObject normalButton;
+    [SerializeField] private GameObject loseButton;
+
+    [Header("Lose Game Panel")]
+    [SerializeField] private CanvasGroup loseGamePanel;
+
     private void Start()
     {
         EventManager.SubscribeToEvent(EventNames._OnEndNewDay, EndDayScreen);
@@ -49,6 +56,17 @@ public class UIManager : MonoBehaviour
         EventManager.TriggerEvent(EventNames._OnStartNewDay);
     }
 
+    public void ButtonEndTheGame()
+    {
+        LeanTween.alphaCanvas(loseGamePanel, 1, timerIntro)
+                                   .setOnComplete(() =>
+                                   {
+                                       loseGamePanel.interactable = true;
+                                       loseGamePanel.blocksRaycasts = true;
+                                   });
+        Cursor.visible = true;
+    }
+
     private void EndDayScreen(params object[] parameters)
     {
         dayText.text = "Day " + GameManager.Instance.GetterNumberDay().ToString();
@@ -64,6 +82,18 @@ public class UIManager : MonoBehaviour
                                         endDayPanel.blocksRaycasts = true;
                                     });
         Cursor.visible = true;
+
+        if (GameManager.Instance.playerLoseTheGame)
+        {
+            loseButton.SetActive(true);
+            normalButton.SetActive(false);
+        }
+        else
+        {
+            normalButton.SetActive(true);
+            loseButton.SetActive(false);
+        }
+
     }
 
 

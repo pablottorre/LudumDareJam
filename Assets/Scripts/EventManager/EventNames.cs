@@ -16,4 +16,5 @@ public static class EventNames
     public const string _OnStartNewDay = "OnStartNewDay";
     public const string _OnEndWorkNewDay = "OnEndWorkNewDay";
     public const string _OnEndNewDay = "OnEndNewDay";
+    public const string _OnEndOfGame = "OnEndOfGame";
 }

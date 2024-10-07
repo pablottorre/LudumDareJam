@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int costs;
     [SerializeField] private List<int> listOfCosts = new List<int>();
     [SerializeField] private List<float> listOfTimers = new List<float>();
+    public bool playerLoseTheGame = false;
 
     private void Awake()
     {
@@ -145,11 +146,20 @@ public class GameManager : MonoBehaviour
 
     private void EndOfFullDay()
     {
-        EventManager.TriggerEvent(EventNames._OnEndNewDay);
+
         if (numberDay >= listOfCosts.Count )
             costs = listOfCosts[listOfCosts.Count];
         else
             costs = listOfCosts[numberDay];
+
+        if ((earnings + savings) >= costs)
+            playerLoseTheGame = false;
+        else
+            playerLoseTheGame = true;
+
+
+        EventManager.TriggerEvent(EventNames._OnEndNewDay);
+
 
         
         if (numberDay >= listOfTimers.Count )
