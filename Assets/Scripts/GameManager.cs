@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
         if (numberDay >= listOfTimers.Count )
             TimeSystem.instance.SetterMaxTimer(listOfTimers[listOfTimers.Count]);
         else
-            TimeSystem.instance.SetterMaxTimer(numberDay);
+            TimeSystem.instance.SetterMaxTimer(listOfTimers[numberDay]);
         
     }
 

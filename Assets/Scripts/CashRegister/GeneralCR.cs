@@ -8,6 +8,9 @@ public class GeneralCR : MonoBehaviour
 {
     private List<ItemType> itemsFromClient = new List<ItemType>();
 
+    private int milks = 0;
+    private int candys = 0;
+
 
     [SerializeField] private List<KeyboardCR> keys = new List<KeyboardCR>();
     [SerializeField] private MonitorCR monitor;
@@ -93,6 +96,15 @@ public class GeneralCR : MonoBehaviour
     {
         monitor.ItemTipedSuccess(moneyToGain.ToString(), isCodeItem);
         totalCashMde.text = "$" + totalAmount;
+        if (itemScanned == ItemType.Milk)
+        {
+            milks++;
+        }
+        else if(itemScanned == ItemType.Candy)
+        {
+            candys++;
+        }
+
         itemsFromClient.Remove(itemScanned);
 
         if (itemsFromClient.Count == 0)
@@ -137,7 +149,19 @@ public class GeneralCR : MonoBehaviour
     private void StartNewDay(params object[] parameters)
     {
         totalAmount = 0;
+        milks = 0;
+        candys = 0;
         totalCashMde.text = "$" + totalAmount;
+    }
+
+    public int GetterTotalMilks()
+    {
+        return milks;
+    } 
+    
+    public int GetterTotalCandys()
+    {
+        return candys;
     }
 
     public void PlaySoundScannedProduct()

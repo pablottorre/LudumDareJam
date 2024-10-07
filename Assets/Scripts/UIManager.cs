@@ -4,6 +4,8 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    [SerializeField] private GeneralCR cashRegister;
+
     [SerializeField] private CanvasGroup introPanel;
 
     [Header("Normal Panel")]
@@ -17,10 +19,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text earningsText;
     [SerializeField] private TMP_Text milkMoneyText;
     [SerializeField] private TMP_Text milkAmountText;
-    [SerializeField] private TMP_Text butterMoneyText;
-    [SerializeField] private TMP_Text butterAmountText;
-    [SerializeField] private TMP_Text canMoneyText;
-    [SerializeField] private TMP_Text canAmountText;
     [SerializeField] private TMP_Text candyMoneyText;
     [SerializeField] private TMP_Text candyAmountText;
 
@@ -99,16 +97,15 @@ public class UIManager : MonoBehaviour
         savingsText.text = "$" + GameManager.Instance.GetterSaving().ToString();
         earningsText.text = "$" + GameManager.Instance.GetterEarnings().ToString();
 
-        milkAmountText.text = "(" +  ")";
-        butterAmountText.text = "(" +  ")";
-        canAmountText.text = "(" +  ")";
-        candyAmountText.text = "(" +  ")"; 
-        
-        
-       /* milkMoneyText.text = ;
-        butterMoneyText.text = ;
-        canMoneyText.text = ;
-        candyMoneyText.text = ;*/
+        int milkAmount = cashRegister.GetterTotalMilks();
+        int candyAmount = cashRegister.GetterTotalCandys();
+
+        milkAmountText.text = "(" + milkAmount + ")";
+        candyAmountText.text = "(" + candyAmount + ")";
+
+
+        milkMoneyText.text = "$" + (milkAmount * 5).ToString();
+        candyMoneyText.text = "$" + (candyAmount).ToString();
 
         costOfDayText.text = "$" + GameManager.Instance.GetterCosts().ToString();
         totalText.text = "$" + GameManager.Instance.GetterNewTotal().ToString();
